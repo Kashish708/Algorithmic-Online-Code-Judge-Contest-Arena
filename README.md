@@ -1,4 +1,4 @@
-# Algorithmic-Online-Code-Judge-Contest-Arena
+# Algorithmic Online Code Judge & Contest Arena
 
 A high-performance, full-stack competitive programming platform engineered to securely compile, execute, and evaluate multi-language code submissions in real-time. 
 
