@@ -23,9 +23,3 @@ Built with **FastAPI** and **SQLAlchemy**, this system features a dynamic Monaco
 * **Frontend:** Vanilla HTML5, CSS Grid, JavaScript (Fetch API), Monaco Editor CDN
 
 
-## 🚀 Installation & Setup
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/YourUsername/your-repo-name.git](https://github.com/YourUsername/your-repo-name.git)
-   cd your-repo-name
