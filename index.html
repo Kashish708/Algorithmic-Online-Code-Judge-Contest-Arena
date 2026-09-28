@@ -154,8 +154,7 @@
     }
 
     function connectWebSocket() {
-      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      ws = new WebSocket(`${protocol}//${window.location.host}/ws/${clientId}`);
+      ws = new WebSocket(`ws://${window.location.host}/ws/${clientId}`);
       ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
         if (data.type === 'progress') {
@@ -294,9 +293,12 @@
           
           if (!data) return;
 
+          // If the status is an intermediate step, update the UI but KEEP polling
           if (data.status === "Queued" || data.status === "Compiling..." || data.status.startsWith("Running")) {
             document.getElementById('verdictTag').innerHTML = `<span class="badge badge-Queued">${data.status}</span>`;
-          } else {
+          } 
+          // If the status is a final verdict, update UI and STOP polling
+          else {
             clearInterval(interval);
             const badgeClass = data.status === "Accepted" ? "badge-Accepted" : (data.status === "Partial" ? "badge-Partial" : "badge-error");
             document.getElementById('verdictTag').innerHTML = `<span class="badge ${badgeClass}">${data.status}</span>`;
@@ -313,7 +315,7 @@
         } catch (e) {
           console.error("Polling fallback encountered an issue:", e);
         }
-      }, 500);
+      }, 500); // Check every half-second for smoother animation
     }
 
     async function fetchHistory() {
